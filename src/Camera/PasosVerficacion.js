@@ -1,16 +1,10 @@
 import React, { Fragment } from "react";
 import Grid from "@mui/material/Grid";
 import { Typography, Box, Button } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import selfie from "../images/Selfie.svg";
 import escritorioSelfie from '../images/MujerConComputadora.svg';
 
-// const useStyles = makeStyles((theme) => ({
-//   boton: {
-//     borderRadius: '20px'
-//   },
-// }));
 
 export default function PasosVerficacion() {
 
@@ -65,20 +59,22 @@ export default function PasosVerficacion() {
                 El rostro debe estar descubierto, sin lentes y con buena iluminación. Evita hacer gestos dusrante la captura.
               </Typography> 
             </Box>
-            <Box>
+            <Box sx={{p: 5}}>
               <img alt="imagen selfie" src={escritorioSelfie} />
             </Box>
-            <Box>
-              <Button
-                  color="error"
-                  variant="contained"
-                  fullWidth
-                  component={Link}
-                  to='/camera'
-                  sx={{ borderRadius: 50 }}
-              >
-                Continuar
-              </Button>
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 5 }}>
+              <Box sx={{ width: '60%' }}>
+                <Button
+                    color="error"
+                    variant="contained"
+                    fullWidth
+                    component={Link}
+                    to='/camera'
+                    sx={{ borderRadius: 50 }}
+                >
+                  Continuar
+                </Button>
+              </Box>
             </Box>
           </Grid>
         </Grid>
