@@ -76,17 +76,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-let elem =
-  document.compatMode === 'CSS1Compat'
-    ? document.documentElement
-    : document.body;
-
-const videoConstraints = {
-  width: elem.clientWidth,
-  height: elem.clientHeight,
-  facingMode: 'environment',
-};
-
 export default function CameraPrincipal() {
   const classes = useStyles();
   const webcamRef = useRef(null);
@@ -95,6 +84,7 @@ export default function CameraPrincipal() {
   const [image, setImage] = useState(null);
 
   const [visibleButton, setVisibleButton] = useState(false);
+  const [reload, setReload] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
   const [colorAudio, setColorAudio] = useState(false);
   const [open, setOpen] = useState(false);
@@ -103,49 +93,56 @@ export default function CameraPrincipal() {
     src: [file],
   });
 
-
   const soundPlay = () => {
     Sounds.play();
     setColorAudio(true);
-    console.log("REPRODUCE");
   };
 
   const detenerAudio = () => {
     Sounds.stop();
     setColorAudio(false);
-    console.log("DETENER");
+    // ESTAS SON LAS FUNCIONES ENCARGADAS DE TOMAR LAS FOTOGRAFIAS EN CASO DE QUE CUANDO SE TERMINE EL AUDIO
+    // O EN CUESTION DE CUANDO SE DETECTA EL PARPADEO
+    // setImage(camera.current.takePhoto()) 
+    // capture();
   };
 
   setTimeout(detenerAudio, 7000);
 
+  // FUNCION CONDICIONADA PARA MOSTRAR EL BOTON DE TOMAR FOTOGRAFIA
   function mostrarCamara() {
     setVisibleButton(true);
-  }
+  };
 
+  // SE ESTA USANDO UN TIMEOUT PARA EL TIEMPO DE MOSTRAR EL BOTON DE TOMA DE FOTOGRAFIA DEBEN SER 30 SEG
+  // SE TIENE CONDICIONADO A MENOS POR LAS PRUEBAS
   setTimeout(mostrarCamara, 8000);
 
   const handleClickOpen = () => {
     setOpen(!open);
   };
 
+  // CON ESTA FUNCION TOMAMOS LA FOTOGRAFIA DE MANERA ESCRITORIO
   const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.takePhoto();
+    const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
 
   useEffect(() => {
-    // soundPlay();
-    // setTimeout(soundPlay, 3000);
-  }, []);
+    setReload(false);
+    // ESTA LINEA COMENTADA SE EJECUTA EN ACCION PARA ACTIVAR DESPUES DE 3 SEGUNDOS LA ALARMA QUE INDICA LA ACCION DEL PARPADEO
+    setTimeout(soundPlay, 3000);
+  }, [reload]);
 
-  console.log(image)
 
   return (
     <Fragment>
+      {/* AQUI COMIENZA LA MANERA RESPONSIVA DE LA TOMA DE FOTOGRAFIA */}
       <Box sx={{ display: { xs: "block", sm: "none" } }}>
         <Grid container direction="row" justifyContent="center">
           <Grid item xs={12}>
+            {/* CONDICIONAR SI EXISTE UNA IMAGEN GUARDADA DENTRO DEL STATE PARA PODER MOSTRARLA O MOSTRAR SOLO LA CAMARA */}
           {image ? (
             <Box>
               <img alt="selfieImagen" src={image} style={{width: '100%'}} />
@@ -173,6 +170,7 @@ export default function CameraPrincipal() {
                       onClick={()=> {
                         setImage(null)
                         handleClickOpen()
+                        setReload(true);
                       }}
                     >
                       Volver a capturar
@@ -286,7 +284,10 @@ export default function CameraPrincipal() {
                     <Button
                       variant="contained"
                       fullWidth
-                      onClick={() => setImgSrc(null)}
+                      onClick={() => {
+                        setImgSrc(null)
+                        setReload(true);
+                      }}
                       style={{ color: "black", background: "white" }}
                       sx={{
                         borderRadius: 50,
@@ -329,12 +330,7 @@ export default function CameraPrincipal() {
                       />
                     </Box>
                   </Box>
-                  {/* <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Camera 
-                      ref={camera} 
-                      aspectRatio={4.4/3}
-                    />
-                  </Box> */}
+                  
                   <Box sx={{ display: "flex", justifyContent: "center"}}>
                     <Box className={classes.camara}>
                       <Webcam

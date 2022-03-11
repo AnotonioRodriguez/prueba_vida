@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import CameraPrincipal from './Camera/CameraPrincipal';
 import PasosVerficacion from './Camera/PasosVerficacion';
-import Resultados from './Camera/Resultados';
+
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
         <Routes>
           <Route path="/" element={<PasosVerficacion />} />
           <Route path="/camera" element={<CameraPrincipal />} />
-          <Route path="/resultados" element={<Resultados />} />
         </Routes>
       </BrowserRouter>
     </div>
