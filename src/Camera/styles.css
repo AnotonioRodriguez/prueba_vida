@@ -1,6 +1,6 @@
 .imagenFondo{
-    height: 80vh;
-}
+    height: 75vh;
+};
 
 .fondoButtons{
     margin: 0;
@@ -9,6 +9,10 @@
     background-image: url( '../images/Componente236.png');
     background-position: center;
     background-clip: inherit;
+};
+.camaraResponsive{
+    height: 100%;
+    width: 100%;
 }
 
 @media only screen and (max-device-width : 640px) {
@@ -23,12 +27,10 @@
         position:fixed;
         height:100%;
         width:100%;
-   }
+    }
+   .imagenFondo{
+        height: 65vh;
+    };
 }
 
-/* @media only screen and (max-width: 600px) {
-    .imagenFondo{
-        height: 63vh;
-    }
-} */
 
