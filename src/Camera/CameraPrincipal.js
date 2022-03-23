@@ -58,6 +58,7 @@ const useStyles = makeStyles(() => ({
 export default function CameraPrincipal() {
   const classes = useStyles();
   const [colorAudio, setColorAudio] = useState(false);
+  // Dentro de este state se guarda la imagen que se captura dentro del componente de PRUEBA
   const [dataFoto, setDataFoto] = useState(null);
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
@@ -76,6 +77,7 @@ export default function CameraPrincipal() {
     setColorAudio(false);
   };
 
+  // ESTA LINEA ESTA COMENTADA ES EL SETOUT PARA SABER CUANDO TIEMPO DESEES QUE DURE EL AUDIO DESPUES DE INICIARLO
   // setTimeout(detenerAudio, 7000);
 
   const handleClickOpen = () => {
@@ -87,8 +89,6 @@ export default function CameraPrincipal() {
     // ESTA LINEA COMENTADA SE EJECUTA EN ACCION PARA ACTIVAR DESPUES DE 3 SEGUNDOS LA ALARMA QUE INDICA LA ACCION DEL PARPADEO
     // setTimeout(soundPlay, 3000);
   }, [reload]);
-
-  console.log(dataFoto);
 
   return (
     <Fragment>
