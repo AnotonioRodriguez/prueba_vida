@@ -1,7 +1,6 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import * as faceapi from "face-api.js";
-import { Button, IconButton } from "@mui/material";
-import rec from "../images/Grupo 1078.svg";
+import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 
 function Prueba({ setDataFoto, dataFoto, handleClickOpen }) {
