@@ -10,7 +10,8 @@ import { Howl } from "howler";
 import file from "./Alarm.mp3";
 import sonidoColor from "../images/ComponenteSonidoColor.svg";
 import sonido from "../images/Componente 1850 – 3.svg";
-import mask from "../images/maskEscritorio.svg";
+import mask from "../images/maskSimple.png";
+import maskAprobada from "../images/maskAprovada.png";
 import maskMovil from "../images/Sustracción.png";
 import "./styles.css";
 import Prueba from "./Prueba";
@@ -108,10 +109,9 @@ export default function CameraPrincipal() {
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Box sx={{ p: 0.5, width: "80%" }}>
                       <Button
-                        color="error"
                         variant="contained"
                         fullWidth
-                        sx={{ borderRadius: 50 }}
+                        sx={{ borderRadius: 50, background: '#C20E30' }}
                         onClick={handleClickOpen}
                       >
                         Aceptar
@@ -209,7 +209,7 @@ export default function CameraPrincipal() {
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Box className={classes.mascara}>
                     <img
-                      src={dataFoto === null ? mask : mask}
+                      src={dataFoto === null ? mask : maskAprobada}
                       alt="imagenMask"
                       className={classes.imagen}
                     />
@@ -254,7 +254,6 @@ export default function CameraPrincipal() {
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Box sx={{ p: 1, width: "50%", mt: 2 }}>
                       <Button
-                        color="error"
                         variant="contained"
                         fullWidth
                         onClick={() => {
@@ -262,8 +261,8 @@ export default function CameraPrincipal() {
                         }}
                         sx={{
                           borderRadius: 50,
-                          border: 1,
-                          borderColor: "text.primary",
+                          background: '#C20E30',
+                          borderColor: "white",
                         }}
                       >
                         Volver a tomar

@@ -172,24 +172,22 @@ function Prueba({ setDataFoto, dataFoto, handleClickOpen }) {
       <canvas id="canvas"></canvas>
       {verBoton === true ? (
         <>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Box sx={{ p: 0.5, width: "50%" }}>
-                <Button
-                  variant="contained"
-                  fullWidth
-                  color="error"
-                  onClick={() => setbl(1)}
-                  style={{ color: "white" }}
-                  sx={{
-                    borderRadius: 50,
-                    border: 1,
-                    borderColor: "text.primary",
-                  }}
-                >
-                  Tomar fotografia
-                </Button>
-              </Box>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ p: 0.5, width: "50%" }}>
+              <Button
+                variant="contained"
+                fullWidth
+                onClick={() => setbl(1)}
+                style={{ color: "white" }}
+                sx={{
+                  background: "#C20E30",
+                  borderRadius: 50,
+                }}
+              >
+                Tomar fotografia
+              </Button>
             </Box>
+          </Box>
         </>
       ) : null}
     </Fragment>
